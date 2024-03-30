@@ -52,6 +52,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.3.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -106,6 +107,22 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\Users\marme\Desktop\repo\mandelbrot\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;CMAKE_INTDIR="Debug"</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Zi -Ob0"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>Od</Optimization>
+      <Runtime>MDd</Runtime>
+      <RuntimeChecks>RTC1</RuntimeChecks>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <TypeInfo>true</TypeInfo>
+      <UseHostInclude>false</UseHostInclude>
+      <Warning>W3</Warning>
+    </CudaCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
@@ -115,7 +132,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -127,6 +144,10 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -150,6 +171,21 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\Users\marme\Desktop\repo\mandelbrot\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Ob2"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>O2</Optimization>
+      <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <TypeInfo>true</TypeInfo>
+      <UseHostInclude>false</UseHostInclude>
+      <Warning>W3</Warning>
+    </CudaCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
@@ -159,7 +195,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -171,6 +207,10 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
@@ -194,6 +234,21 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\Users\marme\Desktop\repo\mandelbrot\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Ob1"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>O1</Optimization>
+      <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <TypeInfo>true</TypeInfo>
+      <UseHostInclude>false</UseHostInclude>
+      <Warning>W3</Warning>
+    </CudaCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
@@ -203,7 +258,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -215,6 +270,10 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
@@ -237,6 +296,21 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <CudaCompile>
+      <Include>C:\Users\marme\Desktop\repo\mandelbrot\include;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</Defines>
+      <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Zi -Ob1"</AdditionalOptions>
+      <CodeGeneration></CodeGeneration>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <CudaRuntime>Static</CudaRuntime>
+      <GPUDebugInfo>false</GPUDebugInfo>
+      <Optimization>O2</Optimization>
+      <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <TypeInfo>true</TypeInfo>
+      <UseHostInclude>false</UseHostInclude>
+      <Warning>W3</Warning>
+    </CudaCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\marme\Desktop\repo\mandelbrot\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
@@ -246,7 +320,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>cudadevrt.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -258,6 +332,10 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <CudaLink>
+      <AdditionalOptions>-forward-unknown-to-host-compiler -Wno-deprecated-gpu-targets </AdditionalOptions>
+      <PerformDeviceLink>false</PerformDeviceLink>
+    </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\marme\Desktop\repo\mandelbrot\CMakeLists.txt">
@@ -272,7 +350,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCUDACompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCUDAInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/marme/Desktop/repo/mandelbrot/CMakeLists.txt</Message>
@@ -285,7 +363,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCUDACompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCUDAInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/marme/Desktop/repo/mandelbrot/CMakeLists.txt</Message>
@@ -298,7 +376,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCUDACompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCUDAInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/marme/Desktop/repo/mandelbrot/CMakeLists.txt</Message>
@@ -311,13 +389,15 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeCUDACompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeRCCompiler.cmake;C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\3.28.4\CMakeSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCUDAInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeCommonLanguageInclude.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeGenericSystem.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeInitializeConfigs.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeLanguageInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeRCInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInformation.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\CMakeSystemSpecificInitialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Compiler\NVIDIA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-Initialize.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC-C.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-MSVC.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows-NVIDIA-CUDA.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\Windows.cmake;C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\share\cmake-3.28\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\marme\Desktop\repo\mandelbrot\src\main.c" />
+    <ClCompile Include="C:\Users\marme\Desktop\repo\mandelbrot\src\mandelbrotCPU.c" />
+    <CudaCompile Include="..\src\mandelbrotGPU.cu" />
     <None Include="C:\Users\marme\Desktop\repo\mandelbrot\include">
     </None>
   </ItemGroup>
@@ -331,5 +411,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 12.3.targets" />
   </ImportGroup>
 </Project>

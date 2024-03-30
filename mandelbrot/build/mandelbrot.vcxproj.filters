@@ -4,6 +4,14 @@
     <ClCompile Include="C:\Users\marme\Desktop\repo\mandelbrot\src\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\marme\Desktop\repo\mandelbrot\src\mandelbrotCPU.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="..\src\mandelbrotGPU.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\marme\Desktop\repo\mandelbrot\CMakeLists.txt" />

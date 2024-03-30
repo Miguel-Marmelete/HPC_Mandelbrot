@@ -1,21 +1,20 @@
 # CMake generation dependency list for this directory.
 C:/Users/marme/Desktop/repo/mandelbrot/CMakeLists.txt
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/3.28.4/CMakeCCompiler.cmake
+C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/3.28.4/CMakeCUDACompiler.cmake
 C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/3.28.4/CMakeRCCompiler.cmake
 C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/3.28.4/CMakeSystem.cmake
-C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeCInformation.cmake
+C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeCUDAInformation.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake
-C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeRCInformation.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake
-C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Compiler/MSVC-C.cmake
-C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Compiler/MSVC.cmake
+C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Compiler/NVIDIA-CUDA.cmake
+C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Compiler/NVIDIA.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Platform/Windows-Initialize.cmake
-C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Platform/Windows-MSVC-C.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Platform/Windows-MSVC.cmake
+C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Platform/Windows-NVIDIA-CUDA.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Platform/Windows.cmake
 C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/Platform/WindowsPaths.cmake
