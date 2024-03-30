@@ -9,6 +9,9 @@
     <CustomBuild Include="C:\Users\marme\Desktop\repo\mandelbrot\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\Users\marme\Desktop\repo\mandelbrot\include" />
+  </ItemGroup>
+  <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{F62769D7-13DB-31C1-BCE6-186355E4FA25}</UniqueIdentifier>
     </Filter>
