@@ -6,11 +6,8 @@
 #include <omp.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_write.h>
-#include <cuda_runtime.h>
 
-#define WIDTH 7680
-#define HEIGHT 4230
-#define MAX_ITER 500
+
 
 typedef struct {
     uint8_t r;
@@ -18,7 +15,7 @@ typedef struct {
     uint8_t b;
 } RGB;
 
-RGB mandelbrot(int x, int y) {
+RGB mandelbrot(int x, int y, int WIDTH, int HEIGHT,int MAX_ITER ) {
     double creal = (x - WIDTH / 2.0) * 4.0 / WIDTH;
     double cimag = (y - HEIGHT / 2.0) * 4.0 / HEIGHT;
     double real = 0, imag = 0;
@@ -46,6 +43,9 @@ RGB mandelbrot(int x, int y) {
 }
 
 int main() {
+    int WIDTH = 7680;
+    int HEIGHT = 4320;
+    int MAX_ITER = 1000;
     clock_t start, end;
     double cpu_time_used;
     start = clock();
@@ -55,19 +55,23 @@ int main() {
         exit(1);
     }
     
-    #pragma omp parallel for collapse(2)
-    for (int y = 0; y < HEIGHT; y++) {
-        for (int x = 0; x < WIDTH; x++) {
-            image[y * WIDTH + x] = mandelbrot(x, y);
+    int y;
+    int x; 
+    omp_set_num_threads(10);
+    #pragma omp parallel for private(x,y) shared(image) 
+    for (y = 0; y < HEIGHT; y++) {
+        for (x = 0; x < WIDTH; x++) {
+            image[y * WIDTH + x] = mandelbrot(x, y,WIDTH, HEIGHT, MAX_ITER);
         }
     }
+ 
 
-    stbi_write_jpg("../images/mandelbrot.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
+    stbi_write_jpg("../images/mandelbrotCPU.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
 
     free(image);
-    end = clock(); // Marca o tempo final
+    end = clock(); // Mark the end time
 
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Tempo de execucao: %f segundos\n", cpu_time_used);
+    printf("Execution time: %f seconds\n", cpu_time_used);
     return 0;
 }

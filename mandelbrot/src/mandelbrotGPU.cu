@@ -9,8 +9,8 @@
 #include <cuda_runtime.h>
 
 #define WIDTH 7680
-#define HEIGHT 4230
-#define MAX_ITER 500
+#define HEIGHT 4320
+#define MAX_ITER 10000
 
 typedef struct {
     uint8_t r;
@@ -48,7 +48,8 @@ __device__ RGB mandelbrot(int x, int y) {
 __global__ void mandelbrot_kernel(RGB *image) {
     int x = threadIdx.x + blockIdx.x * blockDim.x;
     int y = threadIdx.y + blockIdx.y * blockDim.y;
-
+    //omp_set_num_threads(10);
+    //#pragma omp parallel for 
     if (x < WIDTH && y < HEIGHT) {
         image[y * WIDTH + x] = mandelbrot(x, y);
     }
@@ -71,7 +72,7 @@ int main() {
     mandelbrot_kernel<<<numBlocks, threadsPerBlock>>>(d_image);
 
     cudaMemcpy(image, d_image, sizeof(RGB) * WIDTH * HEIGHT, cudaMemcpyDeviceToHost);
-    stbi_write_jpg("../images/mandelbrot.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
+    stbi_write_jpg("../images/mandelbrotGPU.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
 
     cudaFree(d_image);
     free(image);

@@ -40,24 +40,6 @@ CMAKE_CUDA_FLAGS_RELWITHDEBINFO:STRING=-Xcompiler="-MD  -Zi -O2 -Ob1" -DNDEBUG
 //Libraries linked by default with all CUDA applications.
 CMAKE_CUDA_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
 
-//Flags used by the CXX compiler during all build types.
-CMAKE_CXX_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3 /GR /EHsc
-
-//Flags used by the CXX compiler during DEBUG builds.
-CMAKE_CXX_FLAGS_DEBUG:STRING=/MDd /Zi /Ob0 /Od /RTC1
-
-//Flags used by the CXX compiler during MINSIZEREL builds.
-CMAKE_CXX_FLAGS_MINSIZEREL:STRING=/MD /O1 /Ob1 /DNDEBUG
-
-//Flags used by the CXX compiler during RELEASE builds.
-CMAKE_CXX_FLAGS_RELEASE:STRING=/MD /O2 /Ob2 /DNDEBUG
-
-//Flags used by the CXX compiler during RELWITHDEBINFO builds.
-CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=/MD /Zi /O2 /Ob1 /DNDEBUG
-
-//Libraries linked by default with all C++ applications.
-CMAKE_CXX_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=/DWIN32 /D_WINDOWS /W3
 
@@ -77,7 +59,7 @@ CMAKE_C_FLAGS_RELWITHDEBINFO:STRING=/MD /Zi /O2 /Ob1 /DNDEBUG
 CMAKE_C_STANDARD_LIBRARIES:STRING=kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
 
 //Flags used by the linker during all build types.
-CMAKE_EXE_LINKER_FLAGS:STRING=
+CMAKE_EXE_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during DEBUG builds.
 CMAKE_EXE_LINKER_FLAGS_DEBUG:STRING=/debug /INCREMENTAL
@@ -102,7 +84,7 @@ CMAKE_LINKER:FILEPATH=C:/Program Files/Microsoft Visual Studio/2022/Community/VC
 
 //Flags used by the linker during the creation of modules during
 // all build types.
-CMAKE_MODULE_LINKER_FLAGS:STRING=
+CMAKE_MODULE_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during the creation of modules during
 // DEBUG builds.
@@ -152,7 +134,7 @@ CMAKE_RC_FLAGS_RELWITHDEBINFO:STRING=
 
 //Flags used by the linker during the creation of shared libraries
 // during all build types.
-CMAKE_SHARED_LINKER_FLAGS:STRING=
+CMAKE_SHARED_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during the creation of shared libraries
 // during DEBUG builds.
@@ -179,7 +161,7 @@ CMAKE_SKIP_RPATH:BOOL=NO
 
 //Flags used by the linker during the creation of static libraries
 // during all build types.
-CMAKE_STATIC_LINKER_FLAGS:STRING=
+CMAKE_STATIC_LINKER_FLAGS:STRING=/machine:x64
 
 //Flags used by the linker during the creation of static libraries
 // during DEBUG builds.
@@ -348,6 +330,12 @@ CUDA_nvcuvenc_LIBRARY:FILEPATH=CUDA_nvcuvenc_LIBRARY-NOTFOUND
 //"nvcuvid" library
 CUDA_nvcuvid_LIBRARY:FILEPATH=CUDA_nvcuvid_LIBRARY-NOTFOUND
 
+//C compiler flags for OpenMP parallelization
+OpenMP_C_FLAGS:STRING=-openmp
+
+//C compiler libraries for OpenMP parallelization
+OpenMP_C_LIB_NAMES:STRING=
+
 //Value Computed by CMake
 mandelbrot_BINARY_DIR:STATIC=C:/Users/marme/Desktop/repo/mandelbrot/build
 
@@ -390,18 +378,6 @@ CMAKE_CUDA_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_CUDA_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CUDA_STANDARD_LIBRARIES
 CMAKE_CUDA_STANDARD_LIBRARIES-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS
-CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG
-CMAKE_CXX_FLAGS_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_MINSIZEREL
-CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELEASE
-CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
-CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_STANDARD_LIBRARIES
-CMAKE_CXX_STANDARD_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS
 CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
@@ -504,7 +480,7 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 CUDA_64_BIT_DEVICE_CODE-ADVANCED:INTERNAL=1
 //List of intermediate files that are part of the cuda dependency
 // scanning.
-CUDA_ADDITIONAL_CLEAN_FILES:INTERNAL=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/mandelbrot2_generated_mandelbrotGPU.cu.obj.depend
+CUDA_ADDITIONAL_CLEAN_FILES:INTERNAL=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/mandelbrot2_generated_mandelbrotGPU.cu.depend
 //ADVANCED property for variable: CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE
 CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_BUILD_CUBIN
@@ -604,4 +580,18 @@ CUDA_parse_cubin:INTERNAL=C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x8
 CUDA_run_nvcc:INTERNAL=C:/cmake-3.28.4-windows-x86_64/cmake-3.28.4-windows-x86_64/share/cmake-3.28/Modules/FindCUDA/run_nvcc.cmake
 //Details about finding CUDA
 FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3][C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/bin/nvcc.exe][C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/include][C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/lib/x64/cudart_static.lib][v12.3()]
+//Details about finding OpenMP
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][c ][v2.0()]
+//Details about finding OpenMP_C
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-openmp][v2.0()]
+//Result of TRY_COMPILE
+OpenMP_COMPILE_RESULT_C_openmp:INTERNAL=TRUE
+//ADVANCED property for variable: OpenMP_C_FLAGS
+OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_C_LIB_NAMES
+OpenMP_C_LIB_NAMES-ADVANCED:INTERNAL=1
+//C compiler's OpenMP specification date
+OpenMP_C_SPEC_DATE:INTERNAL=200203
+//Result of TRY_COMPILE
+OpenMP_SPECTEST_C_:INTERNAL=TRUE
 

@@ -6,7 +6,7 @@ C:
 if %errorlevel% neq 0 goto :cmEnd
 C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\bin\cmake.exe -E make_directory C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/Debug
 if %errorlevel% neq 0 goto :cmEnd
-C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\bin\cmake.exe -D verbose:BOOL=OFF -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.39.33519/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/Debug/mandelbrot2_generated_mandelbrotGPU.cu.obj -D generated_cubin_file:STRING=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/Debug/mandelbrot2_generated_mandelbrotGPU.cu.obj.cubin.txt -P C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/mandelbrot2_generated_mandelbrotGPU.cu.obj.Debug.cmake
+C:\cmake-3.28.4-windows-x86_64\cmake-3.28.4-windows-x86_64\bin\cmake.exe -D verbose:BOOL=OFF -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.39.33519/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/Debug/mandelbrot2_generated_mandelbrotGPU.cu -D generated_cubin_file:STRING=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/Debug/mandelbrot2_generated_mandelbrotGPU.cu.cubin.txt -P C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/mandelbrot2_generated_mandelbrotGPU.cu.Debug.cmake
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

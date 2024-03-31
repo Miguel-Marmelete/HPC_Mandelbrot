@@ -1,20 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Users\marme\Desktop\repo\mandelbrot\src\mandelbrotGPU.cu">
+    <CustomBuild Include="..\src\mandelbrotGPU.cu">
       <Filter>Source Files</Filter>
     </CustomBuild>
     <CustomBuild Include="C:\Users\marme\Desktop\repo\mandelbrot\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="C:\Users\marme\Desktop\repo\mandelbrot\build\CMakeFiles\mandelbrot2.dir\src\$(Configuration)\mandelbrot2_generated_mandelbrotGPU.cu.obj">
-      <Filter>Object Files</Filter>
+    <Object Include="CMakeFiles\mandelbrot2.dir\src\$(Configuration)\mandelbrot2_generated_mandelbrotGPU.cu">
+      <Filter>Source Files</Filter>
     </Object>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Object Files">
-      <UniqueIdentifier>{4638EA18-D00A-3B09-A058-6B6A1883FA53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{F62769D7-13DB-31C1-BCE6-186355E4FA25}</UniqueIdentifier>
     </Filter>
