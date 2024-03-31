@@ -1,10 +1,21 @@
 cmake_minimum_required(VERSION 3.8)
-project(mandelbrot CUDA)
+project(mandelbrot)
 
-set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}; -arch=sm_30)
+# Find CUDA
+find_package(CUDA REQUIRED)
+include_directories(${CUDA_INCLUDE_DIRS})
 
+# Executable for mandelbrotCPU.c
+add_executable(mandelbrot src/mandelbrotCPU.c)
 
-add_executable(mandelbrot src/main.c )
+# Executable for mandelbrotGPU.cu
+cuda_add_executable(mandelbrot2 src/mandelbrotGPU.cu)
+
+# Include directories for mandelbrotCPU
+target_include_directories(mandelbrot PUBLIC include)
+
+# Include directories for mandelbrotGPU
+target_include_directories(mandelbrot2 PUBLIC include)
 
 
 
