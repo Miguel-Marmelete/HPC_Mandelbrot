@@ -10,7 +10,7 @@
 
 #define WIDTH 7680
 #define HEIGHT 4320
-#define MAX_ITER 10000
+#define MAX_ITER 1000
 
 typedef struct {
     uint8_t r;
@@ -24,7 +24,7 @@ __device__ RGB mandelbrot(int x, int y) {
     double real = 0, imag = 0;
     int n = 0;
 
-    while (real * real + imag * imag <= 4 && n < MAX_ITER) {
+    while (real * real + imag * imag <= 20 && n < MAX_ITER) {
         double temp = real * real - imag * imag + creal;
         imag = 2 * real * imag + cimag;
         real = temp;
@@ -48,8 +48,7 @@ __device__ RGB mandelbrot(int x, int y) {
 __global__ void mandelbrot_kernel(RGB *image) {
     int x = threadIdx.x + blockIdx.x * blockDim.x;
     int y = threadIdx.y + blockIdx.y * blockDim.y;
-    //omp_set_num_threads(10);
-    //#pragma omp parallel for 
+
     if (x < WIDTH && y < HEIGHT) {
         image[y * WIDTH + x] = mandelbrot(x, y);
     }
@@ -57,29 +56,36 @@ __global__ void mandelbrot_kernel(RGB *image) {
 
 int main() {
     clock_t start, end;
-    double cpu_time_used;
+    double gpu_time_used =0;
+    double max_time = 3600.0;
+    int images_generated = 0;
     start = clock();
+    while(gpu_time_used < max_time){
 
-    RGB *image = (RGB *)malloc(sizeof(RGB) * WIDTH * HEIGHT);
-    RGB *d_image;
+        RGB *image = (RGB *)malloc(sizeof(RGB) * WIDTH * HEIGHT);
+        RGB *d_image;
 
-    cudaMalloc((void **)&d_image, sizeof(RGB) * WIDTH * HEIGHT);
+        cudaMalloc((void **)&d_image, sizeof(RGB) * WIDTH * HEIGHT);
 
-    dim3 threadsPerBlock(16, 16); // 16x16 threads per block
-    dim3 numBlocks((WIDTH + threadsPerBlock.x - 1) / threadsPerBlock.x,
-                   (HEIGHT + threadsPerBlock.y - 1) / threadsPerBlock.y); // Suficiente para cobrir toda a imagem
+        dim3 threadsPerBlock(5, 5); // 16x16 threads per block
+        dim3 numBlocks((WIDTH + threadsPerBlock.x - 1) / threadsPerBlock.x,
+                    (HEIGHT + threadsPerBlock.y - 1) / threadsPerBlock.y); // Suficiente para cobrir toda a imagem
 
-    mandelbrot_kernel<<<numBlocks, threadsPerBlock>>>(d_image);
+        mandelbrot_kernel<<<numBlocks, threadsPerBlock>>>(d_image);
 
-    cudaMemcpy(image, d_image, sizeof(RGB) * WIDTH * HEIGHT, cudaMemcpyDeviceToHost);
-    stbi_write_jpg("../images/mandelbrotGPU.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
+        cudaMemcpy(image, d_image, sizeof(RGB) * WIDTH * HEIGHT, cudaMemcpyDeviceToHost);
+        stbi_write_jpg("../images/mandelbrotGPU.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
+        images_generated++;
+        end = clock(); // Marca o tempo final
+        gpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 
-    cudaFree(d_image);
-    free(image);
+        cudaFree(d_image);
+        free(image);
 
-    end = clock(); // Marca o tempo final
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Tempo de execucao: %f segundos\n", cpu_time_used);
+        
+    }
+    printf("Tempo de execucao: %f segundos\n", gpu_time_used);
+    printf("Images generated: %d\n", images_generated);
 
     return 0;
 }

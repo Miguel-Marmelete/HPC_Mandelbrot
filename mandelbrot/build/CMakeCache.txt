@@ -114,6 +114,21 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=mandelbrot
 
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=0.1
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=1
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
+
 //RC compiler
 CMAKE_RC_COMPILER:FILEPATH=rc
 
@@ -480,7 +495,7 @@ CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 CUDA_64_BIT_DEVICE_CODE-ADVANCED:INTERNAL=1
 //List of intermediate files that are part of the cuda dependency
 // scanning.
-CUDA_ADDITIONAL_CLEAN_FILES:INTERNAL=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/mandelbrot2_generated_mandelbrotGPU.cu.depend
+CUDA_ADDITIONAL_CLEAN_FILES:INTERNAL=C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir/src/mandelbrot2_generated_mandelbrotGPU.cu.depend;C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU_generated_mandelbrotGPU.cu.depend
 //ADVANCED property for variable: CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE
 CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CUDA_BUILD_CUBIN

@@ -5,10 +5,13 @@
       <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\Debug\mandelbrot.exe</FullPath>
+      <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\Debug\mandelbrotCPU.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\Debug\mandelbrot2.exe</FullPath>
+      <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\Debug\mandelbrotGPU.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\Debug\mandelbrotSequential.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
       <FullPath>C:\Users\marme\Desktop\repo\mandelbrot\build\x64\Debug\ALL_BUILD</FullPath>

@@ -1,4 +1,5 @@
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot.dir
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrot2.dir
+C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotCPU.dir
+C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotSequential.dir
+C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotGPU.dir
 C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/ALL_BUILD.dir
 C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/ZERO_CHECK.dir
