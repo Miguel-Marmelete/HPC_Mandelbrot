@@ -15,7 +15,7 @@
 #define I_MAX 1.0
 #define I_MIN -I_MAX
 
-#define MAX_ITER 8000
+#define MAX_ITER 1
 
 typedef struct {
     uchar r;
