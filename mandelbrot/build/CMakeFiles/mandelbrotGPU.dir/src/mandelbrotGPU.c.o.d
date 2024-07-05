@@ -2,7 +2,8 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o : \
   /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/src/mandelbrotGPU.c \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/_cplus_macros.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/_cplus_preinclude.h \
-  /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/math.h \
+  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h /usr/include/features-time64.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/timesize.h \
@@ -12,14 +13,31 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o : \
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
   /usr/include/x86_64-linux-gnu/bits/types.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/timesize.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
   /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
@@ -27,10 +45,6 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o : \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/bits/floatn.h \
-  /usr/include/x86_64-linux-gnu/bits/floatn.h \
-  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
-  /usr/include/x86_64-linux-gnu/bits/long-double.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/stdlib.h \
   /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
@@ -63,37 +77,14 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o : \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/alloca.h \
   /usr/include/alloca.h /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/math.h \
-  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
-  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
-  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
-  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
-  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
-  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
-  /usr/include/time.h /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
-  /usr/include/x86_64-linux-gnu/bits/time.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/omp.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/include/stb_image_write.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h /usr/include/string.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/strings.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h /usr/include/strings.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/math.h \
   /usr/include/assert.h 
