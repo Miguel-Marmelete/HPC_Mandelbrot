@@ -15,7 +15,7 @@
 #define I_MAX 1.0
 #define I_MIN -I_MAX
 
-#define MAX_ITER 1000
+#define MAX_ITER 100
 
 typedef struct {
     uchar r;
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
         generate_mandelbrot_image(colors, palette);
 
         char filename[64];
-        snprintf(filename, sizeof(filename), "..images/mandelbrot_CPU1000.jpg");
+        snprintf(filename, sizeof(filename), "../images/mandelbrot_CPU100.jpg");
         stbi_write_jpg(filename, X, Y, 3, colors, 100);
 
         image_count++;
