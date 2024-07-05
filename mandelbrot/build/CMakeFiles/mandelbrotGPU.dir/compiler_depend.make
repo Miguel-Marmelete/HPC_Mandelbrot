@@ -86,24 +86,15 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
   /usr/include/alloca.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/omp.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
-  ../include/stb_image_write.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
-  /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/math.h \
-  /usr/include/assert.h
+  ../include/stb_image_write.h
 
-
-/usr/include/assert.h:
 
 ../include/stb_image_write.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h:
 
 /usr/include/alloca.h:
 
@@ -118,8 +109,6 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/stdio.h:
 
@@ -173,8 +162,6 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 
 /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
 
-/usr/include/strings.h:
-
 /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/bits/floatn.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
@@ -198,8 +185,6 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
 
@@ -232,8 +217,6 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 

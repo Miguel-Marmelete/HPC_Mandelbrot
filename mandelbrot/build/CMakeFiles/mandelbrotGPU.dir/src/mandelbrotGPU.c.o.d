@@ -77,6 +77,7 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o : \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/alloca.h \
   /usr/include/alloca.h /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/omp.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/include/stb_image_write.h \

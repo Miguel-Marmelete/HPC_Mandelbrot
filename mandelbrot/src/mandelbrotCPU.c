@@ -30,37 +30,32 @@ double lerp(double v0, double v1, double t) {
 Color* make_palette(int size);
 
 Color mandelbrot(int px, int py, Color* palette) {
-    double x = 0; // complex (c)
-    double y = 0;
-
     double x0 = R_MIN + (px * ((R_MAX - R_MIN) / (X * 1.0))); // complex scale of Px
     double y0 = I_MIN + (py * ((I_MAX - I_MIN) / (Y * 1.0))); // complex scale of Py
 
-    double i = 0;
+    double x = 0;
+    double y = 0;
     double x2 = 0;
     double y2 = 0;
 
-    while (x2 + y2 <= 20 && i < MAX_ITER) {
+    int i;
+    for (i = 0; i < MAX_ITER && x2 + y2 <= 4.0; i++) {
         y = 2 * x * y + y0;
         x = x2 - y2 + x0;
         x2 = x * x;
         y2 = y * y;
-        i++;
     }
+    
     if (i < MAX_ITER) {
         double log_zn = log(x * x + y * y) / 2.0;
         double nu = log(log_zn / log(2.0)) / log(2.0);
         i += 1.0 - nu;
     }
-    Color c1 = palette[(int)i];
-    Color c2;
-    if ((int)i + 1 > MAX_ITER) {
-        c2 = palette[(int)i];
-    } else {
-        c2 = palette[((int)i) + 1];
-    }
 
-    double mod = i - ((int)i); // cant mod doubles
+    Color c1 = palette[(int)i];
+    Color c2 = palette[(i + 1) % (MAX_ITER + 1)];
+    double mod = i - ((int)i);
+
     return (Color){
         .r = (int)lerp(c1.r, c2.r, mod),
         .g = (int)lerp(c1.g, c2.g, mod),
@@ -68,14 +63,15 @@ Color mandelbrot(int px, int py, Color* palette) {
     };
 }
 
-void generate_mandelbrot_image(uchar (*colors)[X][3], Color* palette) {
-    #pragma omp parallel for
-    for (int Py = 0; Py < Y; Py++) {
-        for (int Px = 0; Px < X; Px++) {
-            Color c = mandelbrot(Px, Py, palette);
-            colors[Py][Px][0] = c.r;
-            colors[Py][Px][1] = c.g;
-            colors[Py][Px][2] = c.b;
+void generate_mandelbrot_image(uchar* colors, Color* palette) {
+    #pragma omp parallel for schedule(dynamic)
+    for (int py = 0; py < Y; py++) {
+        for (int px = 0; px < X; px++) {
+            Color c = mandelbrot(px, py, palette);
+            int idx = (py * X + px) * 3;
+            colors[idx] = c.r;
+            colors[idx + 1] = c.g;
+            colors[idx + 2] = c.b;
         }
     }
 }
@@ -87,7 +83,7 @@ int main(int argc, char *argv[]) {
     }
     double time_limit = atof(argv[1]);
 
-    uchar (*colors)[X][3] = malloc(sizeof(uchar[Y][X][3]));
+    uchar* colors = malloc(X * Y * 3 * sizeof(uchar));
     Color* palette = make_palette(MAX_ITER);
 
     double start_time = omp_get_wtime();
@@ -98,7 +94,7 @@ int main(int argc, char *argv[]) {
         generate_mandelbrot_image(colors, palette);
 
         char filename[64];
-        snprintf(filename, sizeof(filename), "../images/mandelbrot_CPU100.jpg");
+        snprintf(filename, sizeof(filename), "../images/mandelbrot_CPU.jpg");
         stbi_write_jpg(filename, X, Y, 3, colors, 100);
 
         image_count++;
@@ -116,37 +112,16 @@ int main(int argc, char *argv[]) {
 }
 
 Color* make_palette(int size) {
-    Color (*palette) = malloc(sizeof(Color[size + 1]));
-    for (int i = 0; i < size + 1; i++) {
-        if (i >= size) {
-            palette[i] = (Color){.r = 0, .g = 0, .b = 0};
-            continue;
-        }
-        double j;
-        if (i == 0) {
-            j = 3.0;
-        } else {
-            j = 3.0 * (log(i) / log(size - 1.0));
-        }
-
+    Color* palette = malloc((size + 1) * sizeof(Color));
+    for (int i = 0; i <= size; i++) {
+        double j = i == 0 ? 3.0 : 3.0 * (log(i) / log(size - 1.0));
+        
         if (j < 1) {
-            palette[i] = (Color){
-                .r = 255 * j,
-                .g = 0,
-                .b = 255 * j
-            };
+            palette[i] = (Color){.r = 255 * j, .g = 0, .b = 255 * j};
         } else if (j < 2) {
-            palette[i] = (Color){
-                .r = 255,
-                .g = 255 * (j - 1),
-                .b = 255,
-            };
+            palette[i] = (Color){.r = 255, .g = 255 * (j - 1), .b = 255};
         } else {
-            palette[i] = (Color){
-                .r = 255 * (j - 2),
-                .g = 255,
-                .b = 255 * (j - 2),
-            };
+            palette[i] = (Color){.r = 255 * (j - 2), .g = 255, .b = 255 * (j - 2)};
         }
     }
     return palette;
