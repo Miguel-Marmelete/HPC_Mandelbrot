@@ -1,0 +1,1 @@
+nvc CMakeFiles/mandelbrotCPU.dir/src/mandelbrotCPU.c.o -o mandelbrotCPU  /usr/lib/gcc/x86_64-linux-gnu/12/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

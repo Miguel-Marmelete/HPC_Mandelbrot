@@ -1,0 +1,1 @@
+nvc CMakeFiles/mandelbrot.dir/src/mandelbrotCPU.c.o CMakeFiles/mandelbrot.dir/src/mandelbrot.c.o -o mandelbrot 

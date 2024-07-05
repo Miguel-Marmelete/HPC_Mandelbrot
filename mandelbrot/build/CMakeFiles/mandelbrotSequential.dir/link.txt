@@ -1,0 +1,1 @@
+nvc CMakeFiles/mandelbrotSequential.dir/src/mandelbrot.c.o -o mandelbrotSequential 

@@ -1,5 +1,5 @@
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotCPU.dir
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotSequential.dir
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/mandelbrotGPU.dir
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/marme/Desktop/repo/mandelbrot/build/CMakeFiles/ZERO_CHECK.dir
+/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrotSequential.dir
+/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrotCPU.dir
+/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrotGPU.dir
+/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/edit_cache.dir
+/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/rebuild_cache.dir

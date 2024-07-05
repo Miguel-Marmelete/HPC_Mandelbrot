@@ -48,8 +48,8 @@ int main() {
 
     int WIDTH = 7680;
     int HEIGHT = 4320;
-    int MAX_ITER = 1000;
-    double max_time = 3600.0;
+    int MAX_ITER = 100;
+    double max_time = 60.0;
     int images_generated = 0;
 
     start = clock();
@@ -72,7 +72,7 @@ int main() {
         stbi_write_jpg("../images/mandelbrotCPU.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
         images_generated++;
         end = clock(); // Mark the end time
-        time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+        time_used = (double)(end - start) / CLOCKS_PER_SEC;
 
         free(image);
         

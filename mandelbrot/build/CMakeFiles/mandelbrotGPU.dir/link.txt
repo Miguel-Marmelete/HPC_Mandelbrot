@@ -1,0 +1,1 @@
+nvc CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o -o mandelbrotGPU  /usr/lib/gcc/x86_64-linux-gnu/12/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 
