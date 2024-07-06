@@ -9,7 +9,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/src/mandelbrot.c" "CMakeFiles/mandelbrot.dir/src/mandelbrot.c.o" "gcc" "CMakeFiles/mandelbrot.dir/src/mandelbrot.c.o.d"
-  "/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/src/mandelbrotCPU.c" "CMakeFiles/mandelbrot.dir/src/mandelbrotCPU.c.o" "gcc" "CMakeFiles/mandelbrot.dir/src/mandelbrotCPU.c.o.d"
   )
 
 # Targets to which this target links.

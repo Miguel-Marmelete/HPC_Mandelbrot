@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named mandelbrotSequential
+# Target rules for targets named mandelbrot
 
 # Build rule for target.
-mandelbrotSequential: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mandelbrotSequential
-.PHONY : mandelbrotSequential
+mandelbrot: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mandelbrot
+.PHONY : mandelbrot
 
 # fast build rule for target.
-mandelbrotSequential/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrotSequential.dir/build.make CMakeFiles/mandelbrotSequential.dir/build
-.PHONY : mandelbrotSequential/fast
+mandelbrot/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/build
+.PHONY : mandelbrot/fast
 
 #=============================================================================
 # Target rules for targets named mandelbrotCPU
@@ -160,7 +160,7 @@ src/mandelbrot.o: src/mandelbrot.c.o
 
 # target to build an object file
 src/mandelbrot.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrotSequential.dir/build.make CMakeFiles/mandelbrotSequential.dir/src/mandelbrot.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/mandelbrot.c.o
 .PHONY : src/mandelbrot.c.o
 
 src/mandelbrot.i: src/mandelbrot.c.i
@@ -168,7 +168,7 @@ src/mandelbrot.i: src/mandelbrot.c.i
 
 # target to preprocess a source file
 src/mandelbrot.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrotSequential.dir/build.make CMakeFiles/mandelbrotSequential.dir/src/mandelbrot.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/mandelbrot.c.i
 .PHONY : src/mandelbrot.c.i
 
 src/mandelbrot.s: src/mandelbrot.c.s
@@ -176,7 +176,7 @@ src/mandelbrot.s: src/mandelbrot.c.s
 
 # target to generate assembly for a file
 src/mandelbrot.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrotSequential.dir/build.make CMakeFiles/mandelbrotSequential.dir/src/mandelbrot.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/mandelbrot.c.s
 .PHONY : src/mandelbrot.c.s
 
 src/mandelbrotCPU.o: src/mandelbrotCPU.c.o
@@ -235,9 +235,9 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... mandelbrot"
 	@echo "... mandelbrotCPU"
 	@echo "... mandelbrotGPU"
-	@echo "... mandelbrotSequential"
 	@echo "... src/mandelbrot.o"
 	@echo "... src/mandelbrot.i"
 	@echo "... src/mandelbrot.s"

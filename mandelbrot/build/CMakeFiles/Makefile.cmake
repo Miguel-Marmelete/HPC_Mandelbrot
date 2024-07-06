@@ -43,7 +43,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/mandelbrotSequential.dir/DependInfo.cmake"
+  "CMakeFiles/mandelbrot.dir/DependInfo.cmake"
   "CMakeFiles/mandelbrotCPU.dir/DependInfo.cmake"
   "CMakeFiles/mandelbrotGPU.dir/DependInfo.cmake"
   )

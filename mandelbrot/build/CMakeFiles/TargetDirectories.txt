@@ -1,4 +1,4 @@
-/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrotSequential.dir
+/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrot.dir
 /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrotCPU.dir
 /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/mandelbrotGPU.dir
 /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles/edit_cache.dir

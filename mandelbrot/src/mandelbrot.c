@@ -1,84 +1,130 @@
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
+#include <omp.h>
 #include <time.h>
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include <stb_image_write.h>
 
-
+#define WIDTH 7680
+#define HEIGHT 4320
 
 typedef struct {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
-} RGB;
+    uint8_t r, g, b;
+} pixel_t;
 
-RGB mandelbrot(int x, int y, int WIDTH, int HEIGHT,int MAX_ITER ) {
-    double creal = (x - WIDTH / 2.0) * 4.0 / WIDTH;
-    double cimag = (y - HEIGHT / 2.0) * 4.0 / HEIGHT;
-    double real = 0, imag = 0;
-    int n = 0;
-    
-    while (real * real + imag * imag <= 4 && n < MAX_ITER) {
-        double temp = real * real - imag * imag + creal;
-        imag = 2 * real * imag + cimag;
-        real = temp;
-        n++;
-    }
+typedef struct {
+    int width, height;
+    pixel_t *data;
+} Image;
 
-    RGB color;
-    if (n == MAX_ITER) {
-        color.r = 0;
-        color.g = 0;
-        color.b = 0;
-    } else {
-        double t = (double)n / MAX_ITER;
-        color.r = (uint8_t)(30 * (1 - t) * t * t * t * 255);
-        color.g = (uint8_t)(45* (1 - t) * (1 - t) * t * t * 255);
-        color.b = (uint8_t)(60 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-    }
-    return color;
-}
+const pixel_t pixel_colour[16] = {
+    {66, 30, 15}, {25, 7, 26}, {9, 1, 47}, {4, 4, 73},
+    {0, 7, 100}, {12, 44, 138}, {24, 82, 177}, {57, 125, 209},
+    {134, 181, 229}, {211, 236, 248}, {241, 233, 191}, {248, 201, 95},
+    {255, 170, 0}, {204, 128, 0}, {153, 87, 0}, {106, 52, 3}
+};
 
-int main() {
+void generate_mandelbrot(Image *image, double cx, double cy) {
+    uint8_t iter_max = 100;
+    double scale = 1.0 / (image->width / 4.0);
 
-    clock_t start, end;
-    double time_used = 0;
+   
+    for (int i = 0; i < image->height; i++) {
+        for (int j = 0; j < image->width; j++) {
+            const double y = (i - image->height / 2) * scale + cy;
+            const double x = (j - image->width / 2) * scale + cx;
+            double zx, zy, zx2, zy2;
+            uint8_t iter = 0;
+            zx = hypot(x - 0.25, y);
 
-    int WIDTH = 7680;
-    int HEIGHT = 4320;
-    int MAX_ITER = 100;
-    double max_time = 60.0;
-    int images_generated = 0;
+            if (x < zx - 2 * zx * zx + 0.25 || (x + 1) * (x + 1) + y * y < 0.0625) iter = iter_max;
 
-    start = clock();
-    while(time_used < max_time){
-        RGB *image = (RGB *)malloc(sizeof(RGB) * WIDTH * HEIGHT);
-        if (!image) {
-            perror("Unable to allocate memory");
-            exit(1);
-        }
-        
-        int y;
-        int x; 
-        for (y = 0; y < HEIGHT; y++) {
-            for (x = 0; x < WIDTH; x++) {
-                image[y * WIDTH + x] = mandelbrot(x, y,WIDTH, HEIGHT, MAX_ITER);
+            zx = zy = zx2 = zy2 = 0;
+
+            do {
+                zy = 2.0 * zx * zy + y;
+                zx = zx2 - zy2 + x;
+                zx2 = zx * zx;
+                zy2 = zy * zy;
+            } while (iter++ < iter_max && zx2 + zy2 < 4.0);
+
+            if (iter > 0 && iter < iter_max) {
+                const uint8_t idx = iter % 16;
+                image->data[i * image->width + j] = pixel_colour[idx];
             }
         }
- 
+    }
+}
 
-        stbi_write_jpg("../images/mandelbrotCPU.jpg", WIDTH, HEIGHT, sizeof(RGB), image, 100);
+void save_image_jpeg(const char *filename, Image *image) {
+    uint8_t *rgb_image = (uint8_t *)malloc(image->width * image->height * 3 * sizeof(uint8_t));
+    if (!rgb_image) {
+        perror("Failed to allocate memory");
+        exit(EXIT_FAILURE);
+    }
+
+    // Convert pixel_t data to RGB format (3 bytes per pixel)
+    for (int i = 0; i < image->width * image->height; ++i) {
+        rgb_image[i * 3] = image->data[i].r;
+        rgb_image[i * 3 + 1] = image->data[i].g;
+        rgb_image[i * 3 + 2] = image->data[i].b;
+    }
+
+    // Save RGB image as JPEG using stb_image_write.h
+    if (!stbi_write_jpg(filename, image->width, image->height, 3, rgb_image, 100)) {
+        perror("Failed to write JPEG file");
+        exit(EXIT_FAILURE);
+    }
+
+    free(rgb_image);
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <time_limit_seconds>\n", argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    int time_limit = atoi(argv[1]);
+    if (time_limit <= 0) {
+        fprintf(stderr, "Invalid time limit: %s\n", argv[1]);
+        return EXIT_FAILURE;
+    }
+
+    Image result;
+    result.width = WIDTH;
+    result.height = HEIGHT;
+    result.data = (pixel_t *)malloc(result.width * result.height * sizeof(pixel_t));
+    if (!result.data) {
+        perror("Failed to allocate memory");
+        return EXIT_FAILURE;
+    }
+
+    double cx = -0.6, cy = 0.0;
+    int images_generated = 0;
+    double start_time = omp_get_wtime();
+
+    do {
+        generate_mandelbrot(&result, cx, cy);
         images_generated++;
-        end = clock(); // Mark the end time
-        time_used = (double)(end - start) / CLOCKS_PER_SEC;
 
-        free(image);
-        
-    }   
-    
-    printf("Execution time: %f seconds\n", time_used);
-    printf("Images generated: %d\n", images_generated);
-    return 0;
+        double current_time = omp_get_wtime();
+        if (current_time - start_time >= time_limit) {
+            break;
+        }
+    } while (1);
+
+    double end_time = omp_get_wtime();
+    printf("Time taken: %.4f seconds.\n", end_time - start_time);
+    printf("Number of images generated: %d\n", images_generated);
+
+    char filename[50];
+    snprintf(filename, sizeof(filename), "../images/mandelbrot.jpg");
+    save_image_jpeg(filename, &result);
+
+    free(result.data);
+    return EXIT_SUCCESS;
 }
