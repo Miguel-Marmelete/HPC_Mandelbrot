@@ -28,7 +28,7 @@ const pixel_t pixel_colour[16] = {
 };
 
     void generate_mandelbrot(Image *image, double cx, double cy, int thread_id, int num_threads) {
-    uint8_t iter_max = 100;
+    uint8_t iter_max = 1000;
     double scale = 1.0 / (image->width / 4.0);
 
     // Calcula a faixa de linhas que cada thread irá processar
