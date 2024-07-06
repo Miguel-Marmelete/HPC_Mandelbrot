@@ -1,1 +1,1 @@
-nvc CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o -o mandelbrotGPU  /usr/lib/gcc/x86_64-linux-gnu/12/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 
+nvc CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o -o mandelbrotGPU  /opt/intel/oneapi/mpi/2021.11/lib/libmpi.so /usr/lib/x86_64-linux-gnu/librt.a /usr/lib/x86_64-linux-gnu/libpthread.a /usr/lib/x86_64-linux-gnu/libdl.a /usr/lib/gcc/x86_64-linux-gnu/12/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

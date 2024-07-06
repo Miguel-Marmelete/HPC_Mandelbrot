@@ -4,7 +4,7 @@
 # compile C with nvc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/include
+C_INCLUDES = -I/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/include -I/opt/intel/oneapi/mpi/2021.11/include
 
 C_FLAGS = -mp=gpu -fopenmp
 

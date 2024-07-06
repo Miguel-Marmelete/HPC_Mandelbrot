@@ -92,6 +92,10 @@ mandelbrotGPU_EXTERNAL_OBJECTS =
 
 mandelbrotGPU: CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o
 mandelbrotGPU: CMakeFiles/mandelbrotGPU.dir/build.make
+mandelbrotGPU: /opt/intel/oneapi/mpi/2021.11/lib/libmpi.so
+mandelbrotGPU: /usr/lib/x86_64-linux-gnu/librt.a
+mandelbrotGPU: /usr/lib/x86_64-linux-gnu/libpthread.a
+mandelbrotGPU: /usr/lib/x86_64-linux-gnu/libdl.a
 mandelbrotGPU: /usr/lib/gcc/x86_64-linux-gnu/12/libgomp.so
 mandelbrotGPU: /usr/lib/x86_64-linux-gnu/libpthread.a
 mandelbrotGPU: CMakeFiles/mandelbrotGPU.dir/link.txt

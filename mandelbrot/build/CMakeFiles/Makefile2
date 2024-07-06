@@ -76,6 +76,7 @@ preinstall:
 clean: CMakeFiles/mandelbrot.dir/clean
 clean: CMakeFiles/mandelbrotCPU.dir/clean
 clean: CMakeFiles/mandelbrotGPU.dir/clean
+clean: CMakeFiles/run_mandelbrotGPU.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -155,6 +156,32 @@ mandelbrotGPU: CMakeFiles/mandelbrotGPU.dir/rule
 CMakeFiles/mandelbrotGPU.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrotGPU.dir/build.make CMakeFiles/mandelbrotGPU.dir/clean
 .PHONY : CMakeFiles/mandelbrotGPU.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/run_mandelbrotGPU.dir
+
+# All Build rule for target.
+CMakeFiles/run_mandelbrotGPU.dir/all: CMakeFiles/mandelbrotGPU.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_mandelbrotGPU.dir/build.make CMakeFiles/run_mandelbrotGPU.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_mandelbrotGPU.dir/build.make CMakeFiles/run_mandelbrotGPU.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles --progress-num= "Built target run_mandelbrotGPU"
+.PHONY : CMakeFiles/run_mandelbrotGPU.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/run_mandelbrotGPU.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/run_mandelbrotGPU.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alunos/tei/2024/tei20431/hpc/HPC_Mandelbrot/mandelbrot/build/CMakeFiles 0
+.PHONY : CMakeFiles/run_mandelbrotGPU.dir/rule
+
+# Convenience name for target.
+run_mandelbrotGPU: CMakeFiles/run_mandelbrotGPU.dir/rule
+.PHONY : run_mandelbrotGPU
+
+# clean rule for target.
+CMakeFiles/run_mandelbrotGPU.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_mandelbrotGPU.dir/build.make CMakeFiles/run_mandelbrotGPU.dir/clean
+.PHONY : CMakeFiles/run_mandelbrotGPU.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

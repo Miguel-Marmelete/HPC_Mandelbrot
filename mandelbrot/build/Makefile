@@ -155,6 +155,19 @@ mandelbrotGPU/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrotGPU.dir/build.make CMakeFiles/mandelbrotGPU.dir/build
 .PHONY : mandelbrotGPU/fast
 
+#=============================================================================
+# Target rules for targets named run_mandelbrotGPU
+
+# Build rule for target.
+run_mandelbrotGPU: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 run_mandelbrotGPU
+.PHONY : run_mandelbrotGPU
+
+# fast build rule for target.
+run_mandelbrotGPU/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_mandelbrotGPU.dir/build.make CMakeFiles/run_mandelbrotGPU.dir/build
+.PHONY : run_mandelbrotGPU/fast
+
 src/mandelbrot.o: src/mandelbrot.c.o
 .PHONY : src/mandelbrot.o
 
@@ -235,6 +248,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... run_mandelbrotGPU"
 	@echo "... mandelbrot"
 	@echo "... mandelbrotCPU"
 	@echo "... mandelbrotGPU"

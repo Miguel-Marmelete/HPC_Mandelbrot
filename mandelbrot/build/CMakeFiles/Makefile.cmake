@@ -21,9 +21,12 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.22/Modules/FindMPI.cmake"
+  "/usr/share/cmake-3.22/Modules/FindMPI/test_mpi.c"
   "/usr/share/cmake-3.22/Modules/FindOpenMP.cmake"
   "/usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-3.22/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPkgConfig.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux.cmake"
@@ -46,4 +49,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/mandelbrot.dir/DependInfo.cmake"
   "CMakeFiles/mandelbrotCPU.dir/DependInfo.cmake"
   "CMakeFiles/mandelbrotGPU.dir/DependInfo.cmake"
+  "CMakeFiles/run_mandelbrotGPU.dir/DependInfo.cmake"
   )

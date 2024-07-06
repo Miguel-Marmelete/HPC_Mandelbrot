@@ -27,12 +27,17 @@ const pixel_t pixel_colour[16] = {
     {255, 170, 0}, {204, 128, 0}, {153, 87, 0}, {106, 52, 3}
 };
 
-void generate_mandelbrot(Image *image, double cx, double cy) {
+    void generate_mandelbrot(Image *image, double cx, double cy, int thread_id, int num_threads) {
     uint8_t iter_max = 100;
     double scale = 1.0 / (image->width / 4.0);
 
-    #pragma omp parallel for collapse(2)
-    for (int i = 0; i < image->height; i++) {
+    // Calcula a faixa de linhas que cada thread irá processar
+    int chunk_size = image->height / num_threads;
+    int start_row = thread_id * chunk_size;
+    int end_row = (thread_id == num_threads - 1) ? image->height : start_row + chunk_size;
+
+    #pragma omp target teams distribute parallel for
+    for (int i = start_row; i < end_row; i++) {
         for (int j = 0; j < image->width; j++) {
             const double y = (i - image->height / 2) * scale + cy;
             const double x = (j - image->width / 2) * scale + cx;
@@ -59,13 +64,14 @@ void generate_mandelbrot(Image *image, double cx, double cy) {
     }
 }
 
-void save_image_jpeg(const char *filename, Image *image) {
+
+    void save_image_jpeg(const char *filename, Image *image) {
     uint8_t *rgb_image = (uint8_t *)malloc(image->width * image->height * 3 * sizeof(uint8_t));
     if (!rgb_image) {
         perror("Failed to allocate memory");
         exit(EXIT_FAILURE);
     }
-
+    #pragma omp target teams distribute parallel for
     // Convert pixel_t data to RGB format (3 bytes per pixel)
     for (int i = 0; i < image->width * image->height; ++i) {
         rgb_image[i * 3] = image->data[i].r;
@@ -82,15 +88,23 @@ void save_image_jpeg(const char *filename, Image *image) {
     free(rgb_image);
 }
 
+
+
 int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <time_limit_seconds>\n", argv[0]);
+    if (argc != 3) {
+        fprintf(stderr, "Usage: %s <time_limit_seconds> <num_threads>\n", argv[0]);
         return EXIT_FAILURE;
     }
 
     int time_limit = atoi(argv[1]);
     if (time_limit <= 0) {
         fprintf(stderr, "Invalid time limit: %s\n", argv[1]);
+        return EXIT_FAILURE;
+    }
+
+    int num_threads = atoi(argv[2]);
+    if (num_threads <= 0) {
+        fprintf(stderr, "Invalid number of threads: %s\n", argv[2]);
         return EXIT_FAILURE;
     }
 
@@ -103,12 +117,21 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
+    // Configura o número de threads para OpenMP
+    omp_set_num_threads(num_threads);
+
     double cx = -0.6, cy = 0.0;
     int images_generated = 0;
     double start_time = omp_get_wtime();
 
     do {
-        generate_mandelbrot(&result, cx, cy);
+        // Cada thread gera sua parte da imagem
+        #pragma omp parallel
+        {
+            int thread_id = omp_get_thread_num();
+            generate_mandelbrot(&result, cx, cy, thread_id, num_threads);
+        }
+
         images_generated++;
 
         double current_time = omp_get_wtime();
