@@ -145,7 +145,7 @@ int main(int argc, char *argv[]) {
     printf("Number of images generated: %d\n", images_generated);
 
     char filename[50];
-    snprintf(filename, sizeof(filename), "../images/mandelbrotCPU.jpg");
+    snprintf(filename, sizeof(filename), "../images/mandelbrotGPU.jpg");
     save_image_jpeg(filename, &result);
 
     free(result.data);
