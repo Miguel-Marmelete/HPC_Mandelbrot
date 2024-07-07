@@ -28,7 +28,7 @@ const pixel_t pixel_colour[16] = {
 };
 
 void generate_mandelbrot(Image *image, double cx, double cy, int thread_id, int num_threads) {
-    int iter_max = 80000; // Change from uint8_t to int
+    int iter_max = 80; // Change from uint8_t to int
     double scale = 1.0 / (image->width / 4.0);
 
     // Calculate the range of rows each thread will process
@@ -42,23 +42,22 @@ void generate_mandelbrot(Image *image, double cx, double cy, int thread_id, int 
             const double y = (i - image->height / 2) * scale + cy;
             const double x = (j - image->width / 2) * scale + cx;
             double zx, zy, zx2, zy2;
-            int iter = 0; // Change from uint8_t to int
-            zx = hypot(x - 0.25, y);
-
-            if (x < zx - 2 * zx * zx + 0.25 || (x + 1) * (x + 1) + y * y < 0.0625) iter = iter_max;
-
+            int iter = 0;
             zx = zy = zx2 = zy2 = 0;
 
-            do {
+            while (iter < iter_max && zx2 + zy2 < 4.0) {
                 zy = 2.0 * zx * zy + y;
                 zx = zx2 - zy2 + x;
                 zx2 = zx * zx;
                 zy2 = zy * zy;
-            } while (iter++ < iter_max && zx2 + zy2 < 4.0);
+                iter++;
+            }
 
-            if (iter > 0 && iter < iter_max) {
-                const int idx = iter % 16; // Change from uint8_t to int
-                image->data[i * image->width + j] = pixel_colour[idx];
+            if (iter < iter_max) {
+                int color_index = (iter % 16);
+                image->data[i * image->width + j] = pixel_colour[color_index];
+            } else {
+                image->data[i * image->width + j] = (pixel_t){0, 0, 0};
             }
         }
     }
@@ -89,19 +88,16 @@ void save_image_jpeg(const char *filename, Image *image) {
 }
 
 int main(int argc, char *argv[]) {
-    
+  
 
     int num_threads = atoi(argv[1]);
-    
+   
 
     Image result;
     result.width = WIDTH;
     result.height = HEIGHT;
     result.data = (pixel_t *)malloc(result.width * result.height * sizeof(pixel_t));
-    if (!result.data) {
-        perror("Failed to allocate memory");
-        return EXIT_FAILURE;
-    }
+   
 
     // Set the number of threads for OpenMP
     omp_set_num_threads(num_threads);
