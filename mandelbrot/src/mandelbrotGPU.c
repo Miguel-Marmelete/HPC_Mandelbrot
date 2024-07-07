@@ -8,7 +8,18 @@
 
 #define WIDTH 15360
 #define HEIGHT 8640
-#define MAX_ITER 100000
+#define MAX_ITER 100
+
+void get_color(int iter, int *r, int *g, int *b) {
+    if (iter == MAX_ITER) {
+        *r = *g = *b = 0;  // Black for points inside the set
+    } else {
+        double t = (double)iter / MAX_ITER;
+        *r = (int)(9 * (1 - t) * t * t * t * 255);
+        *g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+        *b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+    }
+}
 
 void mandelbrot(unsigned char *image) {
     #pragma omp target teams distribute parallel for simd collapse(2)
@@ -21,11 +32,12 @@ void mandelbrot(unsigned char *image) {
                 z = z * z + c;
                 iter++;
             }
-            int color = (iter == MAX_ITER) ? 0 : (255 * iter / MAX_ITER);
+            int r, g, b;
+            get_color(iter, &r, &g, &b);
             int index = (y * WIDTH + x) * 3;
-            image[index + 0] = color;  // Red
-            image[index + 1] = color;  // Green
-            image[index + 2] = color;  // Blue
+            image[index + 0] = r;  // Red
+            image[index + 1] = g;  // Green
+            image[index + 2] = b;  // Blue
         }
     }
 }
