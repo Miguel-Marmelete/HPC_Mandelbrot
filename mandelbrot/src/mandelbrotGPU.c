@@ -6,12 +6,12 @@
 
 #include "stb_image_write.h"
 
-#define WIDTH 7680
-#define HEIGHT 4320
-#define MAX_ITER 1000
+#define WIDTH 15360
+#define HEIGHT 8640
+#define MAX_ITER 100000
 
 void mandelbrot(unsigned char *image) {
-    #pragma omp parallel for schedule(dynamic)
+    #pragma omp target teams distribute parallel for simd collapse(2)
     for (int y = 0; y < HEIGHT; y++) {
         for (int x = 0; x < WIDTH; x++) {
             double complex c = (4.0 * x / WIDTH - 2.0) + (4.0 * y / HEIGHT - 2.0) * I;

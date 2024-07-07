@@ -79,8 +79,44 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
   /usr/include/x86_64-linux-gnu/bits/cmathcalls.h \
   /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/omp.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
-  ../include/stb_image_write.h
+  ../include/stb_image_write.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/math.h \
+  /usr/include/math.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/assert.h
 
+
+/usr/include/assert.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/math.h:
 
 ../include/stb_image_write.h:
 
@@ -104,6 +140,8 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
@@ -122,9 +160,13 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
 ../src/mandelbrotGPU.c:
 
 /usr/include/stdio.h:
+
+/opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/math.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -140,7 +182,11 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
+
+/usr/include/strings.h:
 
 /opt/nvidia/hpc_sdk/Linux_x86_64/24.3/compilers/include/bits/floatn.h:
 
@@ -158,6 +204,8 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
@@ -174,6 +222,8 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
+
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/stdc-predef.h:
@@ -181,6 +231,8 @@ CMakeFiles/mandelbrotGPU.dir/src/mandelbrotGPU.c.o: ../src/mandelbrotGPU.c \
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
